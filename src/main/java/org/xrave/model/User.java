@@ -2,6 +2,7 @@ package org.xrave.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,13 +16,22 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String name;
+    @Column
     private String secondName;
+    @Column
     private String email;
+    @Column
     private byte age;
+    @Column
     private String password;
-    @ManyToMany (targetEntity = Role.class ,fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Role.class)
     private Set<Role> roles;
+
+    public User() {
+
+    }
 
     public String getSecondName() {
         return secondName;
@@ -30,9 +40,7 @@ public class User implements UserDetails {
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
-    public User() {
 
-    }
     public void setPassword(String password) {
         this.password = password;
     }
@@ -44,6 +52,7 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
     public Long getId() {
         return id;
     }
@@ -52,7 +61,9 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -108,5 +119,33 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (age != user.age) return false;
+        if (!id.equals(user.id)) return false;
+        if (!name.equals(user.name)) return false;
+        if (secondName != null ? !secondName.equals(user.secondName) : user.secondName != null) return false;
+        if (!email.equals(user.email)) return false;
+        if (!password.equals(user.password)) return false;
+        return roles != null ? roles.equals(user.roles) : user.roles == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
+        result = 31 * result + email.hashCode();
+        result = 31 * result + (int) age;
+        result = 31 * result + password.hashCode();
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        return result;
     }
 }

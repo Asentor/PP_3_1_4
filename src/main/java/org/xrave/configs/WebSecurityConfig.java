@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.xrave.service.UserServiceImpl;
 
 @Configuration
@@ -27,29 +27,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .mvcMatchers("/login").permitAll()
-                    .mvcMatchers("/admin").hasAuthority("ADMIN")
-                    .mvcMatchers("/addUser").hasAuthority("ADMIN")
-                    .mvcMatchers("/delete").hasAuthority("ADMIN")
-                    .mvcMatchers("/update").hasAuthority("ADMIN")
-                    .anyRequest().authenticated()
+                .mvcMatchers("/login").permitAll()
+                .mvcMatchers("/admin", "/addUser", "/delete", "/update").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin().successHandler(successUserHandler)
-                    .permitAll()
+                .formLogin().successHandler(successUserHandler)
+                .permitAll()
                 .and()
-                    .logout().logoutSuccessUrl("/login")
-                    .permitAll();
+                .logout().logoutSuccessUrl("/login")
+                .permitAll();
     }
 
-    // аутентификация inMemory
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
         return userService;
     }
+
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth.userDetailsService(userService);
+    }
+    @Bean
+    public static PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }

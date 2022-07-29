@@ -24,7 +24,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     @Secured("ADMIN")
-    public String adminPage(ModelMap model) {
+    public String getAdminPage(ModelMap model) {
         model.addAttribute("usersList", userService.getAllUsers());
         model.addAttribute("userModel", new User());
         model.addAttribute("isAdmin", true);

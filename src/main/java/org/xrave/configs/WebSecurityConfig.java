@@ -44,13 +44,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return userService;
     }
 
-    @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    protected void configure( AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
     @Bean
     public static PasswordEncoder getPasswordEncoder(){
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(12);
     }
 
 }

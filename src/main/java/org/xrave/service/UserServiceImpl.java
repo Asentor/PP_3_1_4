@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User usr) {
-        if(! usr.getPassword().equals(userDao.findById(usr.getId()).get().getPassword())) {
+        if (!usr.getPassword().equals(userDao.findById(usr.getId()).get().getPassword())) {
             usr.setPassword(passwordEncoder.encode(usr.getPassword()));
         }
         userDao.save(usr);

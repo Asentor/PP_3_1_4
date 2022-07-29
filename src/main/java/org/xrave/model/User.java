@@ -2,11 +2,9 @@ package org.xrave.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 
@@ -20,13 +18,13 @@ public class User implements UserDetails {
     private String name;
     @Column
     private String secondName;
-    @Column
+    @Column(unique = true)
     private String email;
     @Column
     private byte age;
     @Column
     private String password;
-    @OneToMany(targetEntity = Role.class)
+    @ManyToMany(targetEntity = Role.class)
     private Set<Role> roles;
 
     public User() {
@@ -98,7 +96,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return email;
     }
 
     @Override

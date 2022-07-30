@@ -5,6 +5,28 @@
 <div th:replace="headmenu :: header"> </div>
 <main class="d-flex  row-cols-md-1 flex-nowrap">
 <div th:replace="headmenu :: menu"> </div>
+    <!------------------ modal error ----------------------->
+    <div th:if="${error}" class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: block;" aria-modal="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ERROR</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#errorModal" aria-label="Close"></button>
+                </div>
+                <div th:text="${error}" class="modal-body">
+                    что-то пошло  не так
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-target="#errorModal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#errorModal').modal('show');
+        });
+    </script>
   <!------------------ main content ----------------------->
 <div class="col" style="width: 30px"></div>
     <div class="row justify-content-md-center col-md-10 ">

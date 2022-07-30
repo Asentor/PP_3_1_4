@@ -1,5 +1,6 @@
 package org.xrave.controller;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,18 +25,23 @@ public class AdminController {
 
     @GetMapping("/admin")
     @Secured("ADMIN")
-    public String getAdminPage(ModelMap model) {
+    public String getAdminPage(ModelMap model,@RequestParam(required = false) String error) {
         model.addAttribute("usersList", userService.getAllUsers());
         model.addAttribute("userModel", new User());
         model.addAttribute("isAdmin", true);
         model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("error", error);
         return "adminPage";
     }
 
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute User usr, @RequestParam(required = false, value = "roles") Long[] roles) {
         usr.setRoles(roleService.getRolesByIdArr(roles));
-        userService.createUser(usr);
+        try {
+            userService.createUser(usr);
+        } catch (DataIntegrityViolationException e) {
+            return ("redirect:/admin?error='user with email "+usr.getEmail()+" exists'");
+        }
         return "redirect:/admin";
     }
 

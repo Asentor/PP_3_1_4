@@ -31,9 +31,8 @@ public class AdminController {
         model.addAttribute("isAdmin", true);
         model.addAttribute("roles", roleService.getAllRoles());
         model.addAttribute("error", error);
-        return "adminPage";
+        return "indexajax";
     }
-
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute User usr, @RequestParam(required = false, value = "roles") Long[] roles) {
         usr.setRoles(roleService.getRolesByIdArr(roles));

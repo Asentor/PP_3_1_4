@@ -6,6 +6,9 @@ var rolesList ;
 fetch("api/rolelist").then(res => res.json()).then(res => rolesList = res);
 
 async function getAdminPage() {
+    document.querySelector('#adminPageLink').removeAttribute('href')
+    document.querySelector('#userPageLink').removeAttribute('href')
+
     const usersList = document.querySelector('#adminPageTable')
     let result = ''
     console.log("ВЫВОД ОСНОВНОЙ ТАБЛИЦЫ ЮЗЕРОВ")
@@ -221,3 +224,15 @@ async function updateUser(formIdSelector) {
         .then(x=>  getAdminPage());
 }
 
+async function showUserPage(){
+    document.querySelector('#adminPageLink').classList.remove('active')
+    document.querySelector('#userPageLink').classList.add('active')
+    document.querySelector('#adminMainContent').classList.add('d-none')
+    document.querySelector('#userMainContent').classList.remove('d-none')
+}
+async function showAdminPage(){
+    document.querySelector('#adminPageLink').classList.add('active')
+    document.querySelector('#userPageLink').classList.remove('active')
+    document.querySelector('#userMainContent').classList.add('d-none')
+    document.querySelector('#adminMainContent').classList.remove('d-none')
+}

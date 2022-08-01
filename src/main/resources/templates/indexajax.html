@@ -7,7 +7,34 @@
     <div th:replace="headmenu :: menu"> </div>
     <div class="col" style="width: 30px"></div>
     <div class="row justify-content-md-center col-md-10">
-        <div class="col-md-8">
+        <div id="userMainContent" class="col-md-8 d-none">
+            <h3 class="pb-4 mb-4  border-bottom">
+                User info
+            </h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">SecondName</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">E-Mail</th>
+                    <th scope="col">Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr >
+                    <th sec:authentication="principal.id" scope="row">1</th>
+                    <td sec:authentication="principal.name" >Name</td>
+                    <td sec:authentication="principal.secondName">SecondName</td>
+                    <td sec:authentication="principal.age" >AGE</td>
+                    <td sec:authentication="principal.email">Mail</td>
+                    <td sec:authentication="principal.authorities">no Roles</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="adminMainContent" class="col-md-8">
             <h3 class="pb-4 mb-4  border-bottom">
                 Admin panel
             </h3>
@@ -89,6 +116,6 @@
 
 
 </main>
-<script src="ajaxscripts.js"></script>
+<script src="actions.js"></script>
 </body>
 </html>

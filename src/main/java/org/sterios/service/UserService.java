@@ -1,7 +1,7 @@
-package org.xrave.service;
+package org.sterios.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.xrave.model.User;
+import org.sterios.model.User;
 
 import java.util.List;
 

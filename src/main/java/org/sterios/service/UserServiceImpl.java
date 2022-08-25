@@ -1,12 +1,11 @@
-package org.xrave.service;
+package org.sterios.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.xrave.repository.UserRepository;
-import org.xrave.model.User;
+import org.sterios.repository.UserRepository;
+import org.sterios.model.User;
 
 import java.util.List;
 

@@ -1,13 +1,12 @@
-package org.xrave.controller;
+package org.sterios.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.xrave.model.Role;
-import org.xrave.model.User;
-import org.xrave.service.RoleService;
-import org.xrave.service.UserService;
+import org.sterios.model.Role;
+import org.sterios.model.User;
+import org.sterios.service.RoleService;
+import org.sterios.service.UserService;
 
 import java.util.List;
 

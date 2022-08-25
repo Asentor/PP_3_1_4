@@ -1,10 +1,9 @@
-package org.xrave.service;
+package org.sterios.service;
 
 import org.springframework.stereotype.Service;
-import org.xrave.model.Role;
-import org.xrave.repository.RoleRepository;
+import org.sterios.model.Role;
+import org.sterios.repository.RoleRepository;
 
-import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package org.xrave.controller;
+package org.sterios.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.annotation.Secured;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.xrave.model.User;
-import org.xrave.service.RoleService;
-import org.xrave.service.UserService;
+import org.sterios.model.User;
+import org.sterios.service.RoleService;
+import org.sterios.service.UserService;
 
 @Controller
 public class AdminController {

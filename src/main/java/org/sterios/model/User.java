@@ -1,4 +1,4 @@
-package org.xrave.model;
+package org.sterios.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

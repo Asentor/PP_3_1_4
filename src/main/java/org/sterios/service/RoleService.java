@@ -1,6 +1,6 @@
-package org.xrave.service;
+package org.sterios.service;
 
-import org.xrave.model.Role;
+import org.sterios.model.Role;
 
 import java.util.List;
 import java.util.Set;

@@ -1,11 +1,11 @@
-package org.xrave.repository;
+package org.sterios.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
-import org.xrave.model.User;
+import org.sterios.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

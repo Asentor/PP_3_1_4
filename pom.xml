@@ -9,7 +9,7 @@
         <version>2.7.1</version>
         <relativePath/>
     </parent>
-    <groupId>org.xrave</groupId>
+    <groupId>org.sterios</groupId>
     <artifactId>PP_2_3_1</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
